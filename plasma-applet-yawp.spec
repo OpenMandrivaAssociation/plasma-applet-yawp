@@ -1,33 +1,38 @@
-Summary:        Plasma applet that allow to see the weather	
+Summary:	Plasma applet that allow to see the weather
 Name:		plasma-applet-yawp
-Version: 	0.2.3
-Release: 	%mkrel 1
-Source0: 	http://www.kde-look.org/CONTENT/content-files/yawp-%{version}.tar.bz2
-Patch0:     yawp-fix-cmake.patch
+Version:	0.2.3
+Release:	%mkrel 2
+Source0:	http://www.kde-look.org/CONTENT/content-files/yawp-%{version}.tar.bz2
+Patch0:		yawp-fix-cmake.patch
+# Fix categories according to http://techbase.kde.org/Projects/Plasma/PIG#Category_Names
+Patch1:		yawp-fix-categories.patch
+
 # SVN patches
 #Patch100:	yawp-0.2.1-icon_size.patch
-License: 	GPLv2+
-Group: 		Graphical desktop/KDE
+License:	GPLv2+
+Group:		Graphical desktop/KDE
 URL:		http://www.kde-look.org/content/show.php?content=94106
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	plasma-devel
-Requires:       kdebase4-runtime
+Requires:	kdebase4-runtime
 
 %description 
 Yet Another Weather Plasmoid
 Plasma applet that allow to see the weather. 
 
-%files
+%files -f plasma_applet_yawp.lang
 %defattr(-,root,root)
+%doc README TODO COPYING
 %_kde_libdir/kde4/plasma_yawp.so
 %_kde_appsdir/desktoptheme/default/widgets/yawp_theme13.svg
 %_kde_datadir/kde4/services/plasma_yawp.desktop
-%_kde_datadir/locale/*/LC_MESSAGES/*.mo
+
 
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n yawp-%{version}  
+%setup -q -n yawp-%{version}
+%patch1 -p0
 #%patch0 -p1
 #%patch100 -p0 -b .icon_size
 
@@ -38,5 +43,6 @@ Plasma applet that allow to see the weather.
 %install
 rm -rf %{buildroot}
 %{makeinstall_std} -C build
+%find_lang	plasma_applet_yawp
 %clean
 rm -rf %{buildroot}
