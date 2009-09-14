@@ -15,6 +15,7 @@ URL:		http://www.kde-look.org/content/show.php?content=94106
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	plasma-devel
 Requires:	kdebase4-runtime
+Provides:   plasma-applet
 
 %description 
 Yet Another Weather Plasmoid
