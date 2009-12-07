@@ -1,7 +1,7 @@
 Summary:	Plasma applet that allow to see the weather
 Name:		plasma-applet-yawp
-Version:	0.2.3
-Release:	%mkrel 3
+Version:	0.3.2
+Release:	%mkrel 1
 Source0:	http://www.kde-look.org/CONTENT/content-files/yawp-%{version}.tar.bz2
 #Patch0:		yawp-fix-cmake.patch
 # Fix categories according to http://techbase.kde.org/Projects/Plasma/PIG#Category_Names
@@ -13,7 +13,9 @@ License:	GPLv2+
 Group:		Graphical desktop/KDE
 URL:		http://www.kde-look.org/content/show.php?content=94106
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	kdebase4-workspace-devel
 BuildRequires:	plasma-devel
+BuildRequires:	kdeplasma-addons-devel
 Requires:	kdebase4-runtime
 Provides:   plasma-applet
 
@@ -24,9 +26,9 @@ Plasma applet that allow to see the weather.
 %files -f plasma_applet_yawp.lang
 %defattr(-,root,root)
 %doc README TODO COPYING
-%_kde_libdir/kde4/plasma_yawp.so
-%_kde_appsdir/desktoptheme/default/widgets/yawp_theme13.svg
-%_kde_datadir/kde4/services/plasma_yawp.desktop
+%_kde_libdir/kde4/*.so
+%_kde_appsdir/desktoptheme/default/widgets/*.svg
+%_kde_datadir/kde4/services/*.desktop
 
 
 #--------------------------------------------------------------------
